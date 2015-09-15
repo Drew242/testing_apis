@@ -11,4 +11,14 @@ class Api::V1::ItemsControllerTest < ActionController::TestCase
     assert_equal 2, items.count
     assert "Jon Snow", item["name"]
   end
+
+  test "#show" do
+    get :show, format: :json, id: Item.first.id
+
+    item = JSON.parse(response.body, symbolize_names: true)
+
+    assert_response :success
+    assert_equal "Lanister",           item[:name]
+    assert_equal "My uncle is my dad", item[:description]
+  end
 end

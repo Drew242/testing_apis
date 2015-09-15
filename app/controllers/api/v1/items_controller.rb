@@ -13,6 +13,10 @@ class Api::V1::ItemsController < ApplicationController
     respond_with Item.create(item_params), location: nil
   end
 
+  def update
+    respond_with Item.update(params[:id], item_params)
+  end
+
   private
 
   def item_params
